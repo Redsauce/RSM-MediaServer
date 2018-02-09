@@ -42,6 +42,7 @@ if (count($nombres_archivo) > 0) {
 
     // The file exists
     $nombre_archivo = $nombres_archivo[0];
+
     $parts = explode(".", basename($nombre_archivo));
     $nombreSinExtension = $parts[0];
     $extension = $parts[1];

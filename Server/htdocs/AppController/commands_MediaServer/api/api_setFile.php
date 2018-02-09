@@ -26,7 +26,7 @@ foreach ($_GET as $key => $value) {
 require_once "../utilities/RStools.php";
 require_once "../utilities/RSconfiguration.php";
 require_once "../utilities/RSsecurityCheck.php";
-
+error_log(print_r($GLOBALS["RS_POST"],true));
 isset($GLOBALS["RS_POST"]["clientID"  ]) ? $clientID   =               $GLOBALS["RS_POST"]["clientID"  ]  : dieWithError(400);
 isset($GLOBALS["RS_POST"]["itemID"    ]) ? $itemID     =               $GLOBALS["RS_POST"]["itemID"    ]  : dieWithError(400);
 isset($GLOBALS["RS_POST"]["propertyID"]) ? $propertyID =               $GLOBALS["RS_POST"]["propertyID"]  : dieWithError(400);
