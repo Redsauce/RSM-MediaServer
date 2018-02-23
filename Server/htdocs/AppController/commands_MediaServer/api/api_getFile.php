@@ -48,7 +48,7 @@ if (count($nombres_archivo) > 0) {
     $extension = $parts[1];
     $nombreSinExtension = explode("_", $nombreSinExtension);
     // Original file name is in the string after the last "_" so decode it
-    $nombre_descarga = base64_decode(end($nombreSinExtension));
+    $nombre_descarga = base64_decode(rawurldecode(end($nombreSinExtension)));
 
     // Return the file
     if (strtolower($extension) == "apk"){

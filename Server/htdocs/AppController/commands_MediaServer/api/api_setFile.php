@@ -26,7 +26,7 @@ foreach ($_GET as $key => $value) {
 require_once "../utilities/RStools.php";
 require_once "../utilities/RSconfiguration.php";
 require_once "../utilities/RSsecurityCheck.php";
-error_log(print_r($GLOBALS["RS_POST"],true));
+
 isset($GLOBALS["RS_POST"]["clientID"  ]) ? $clientID   =               $GLOBALS["RS_POST"]["clientID"  ]  : dieWithError(400);
 isset($GLOBALS["RS_POST"]["itemID"    ]) ? $itemID     =               $GLOBALS["RS_POST"]["itemID"    ]  : dieWithError(400);
 isset($GLOBALS["RS_POST"]["propertyID"]) ? $propertyID =               $GLOBALS["RS_POST"]["propertyID"]  : dieWithError(400);
@@ -73,7 +73,7 @@ function saveFile($file_original, $path, $name, $extension) {
         mkdir($directory, 0775, true);
     }
 
-    $file = $path . "_" . base64_encode($name) . "." . $extension;
+    $file = $path . "_" . rawurlencode(base64_encode($name)) . "." . $extension;
 
     // Check folder exists or create it otherwise
     $dirname = dirname($file);
