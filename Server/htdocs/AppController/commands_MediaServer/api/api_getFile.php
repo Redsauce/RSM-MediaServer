@@ -51,14 +51,18 @@ if (count($nombres_archivo) > 0) {
     $nombre_descarga = base64_decode(rawurldecode(end($nombreSinExtension)));
 
     // Return the file
-    if (strtolower($extension) == "apk"){
-        header('Content-type: application/vnd.android.package-archive');
-    } else {
-        header("Content-type: application/" . $extension);
-    }
-    header('Content-Disposition: attachment; filename="' . $nombre_descarga . '"');
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.$nombre_descarga.'"');
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($nombre_archivo));
+    ob_clean();
+    flush();
     readfile($nombre_archivo);
-    exit;
+    exit();
 } else {
     //file not exists
     dieWithError(404);
